@@ -77,7 +77,7 @@ public class App {
                 displayResult(calcResult);
                 break;
             default:
-                System.out.println("I don't recognize the operator you used");
+                System.out.println("I don't recognize that operator you used");
                 menuScan();
                 break;
         }
