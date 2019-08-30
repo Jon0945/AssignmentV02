@@ -1,5 +1,5 @@
 package Se.Lexicon;
-
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -11,17 +11,15 @@ public class App {
     }
 
     private static void printMenu() {
-        // Clears the screen
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-
         // Simple Menu
-        System.out.println(".....................................");
-        System.out.println("...../ Simple Calculator v0.1b /.....");
-        System.out.println(".....................................");
-        System.out.println("...../ 1. Preform a calculation /....");
-        System.out.println("...../ 2. Terminate program     /....");
-        System.out.println(".....................................");
+        System.out.println("............................................");
+        System.out.println("...../ Simple Calculator v0.2b /............");
+        System.out.println("............................................");
+        System.out.println("...../ 1. Preform a sinple calculation    /.");
+        System.out.println("...../ 2. Preform Addition using Array    /.");
+        System.out.println("...../ 3. Preform Subtraction using Array /.");
+        System.out.println("...../ 3. Terminate program     /...........");
+        System.out.println("............................................");
         System.out.println();
         System.out.print("Make your choice: ");
     }
@@ -38,8 +36,9 @@ public class App {
                 case '1':
                     calcInput();
                     break;
-                case '2':
+                case '4':
                     System.out.println("Goodbye!");
+                    scanner.close();
                     KeepGoing = false;
                     break;
                 default:
@@ -70,12 +69,32 @@ public class App {
                 break;
             case '*':
                 calcResult = multiplication(selection1, selection2);
-                displayResult(calcResult);
-                break;
+                if (selection1 == 0) {
+                    System.out.println("Multiplication by zero is always zero");
+                    menuScan();
+                    break;
+                } else if (selection2 == 0) {
+                    System.out.println("Multiplication by zero is always zero");
+                    menuScan();
+                    break;
+                }
+                else
+                    displayResult(calcResult);
+                    break;
             case '/':
                 calcResult = division(selection1, selection2);
-                displayResult(calcResult);
-                break;
+                if (selection1 == 0) {
+                    System.out.println("Division by zero is not allowed");
+                    menuScan();
+                    break;
+                } else if (selection2 == 0) {
+                    System.out.println("Division by zero is not allowed");
+                    menuScan();
+                    break;
+                }
+                else
+                    displayResult(calcResult);
+                    break;
             default:
                 System.out.println("I don't recognize that operator you used");
                 menuScan();
@@ -86,23 +105,50 @@ public class App {
     //Display the Result
     private static void displayResult(double result) {
 
-        System.out.println("The answer is: "+ result);
+        System.out.println("The answer is: " + result);
+    }
+    //Growing the array by 1
+    public static double[] addArray(double[] array) {
+        return Arrays.copyOf(array, (array.length + 1));
     }
 
     //Mathematic Operators
-    private static double addition(double selection1, double selection2) {
+    public static double addition(double selection1, double selection2) {
         return selection1 + selection2;
     }
 
-    private static double subtraction(double selection1, double selection2) {
+    public static double subtraction(double selection1, double selection2) {
         return selection1 - selection2;
     }
 
-    private static double multiplication(double selection1, double selection2) {
+    public static double multiplication(double selection1, double selection2) {
         return selection1 * selection2;
     }
 
-    private static double division(double selection1, double selection2) {
+    public static double division(double selection1, double selection2) {
         return selection1 / selection2;
     }
+
+    //Overloaded addition method set to accept array
+    public static double addition(double[] array1) {
+        double sum = 0;
+        for (double i : array1)
+            sum += i;
+        return sum;
+    }
+
+    //Overloaded subtraction method set to accept array
+    public static double subtraction(double[] array1) {
+        double diff = 0;
+        for (double i : array1)
+            diff -= i;
+        return diff;
+    }
 }
+
+
+
+
+
+
+
