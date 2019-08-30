@@ -69,9 +69,48 @@ public class AppTest
         Assert.assertEquals(expextedResult, actualResult, 0);
     }
 
-    //Test the division method in main App for divide by zero
+    //Test the division method in main App for divide by zero on selection1
     @Test
-    public void divisionbyZeroTest()  {}
+    public void divisionbyZeroTest1()  {
+        //Arrange
+        double expectedResult = 0;
+        double selection1 = 0;
+        double selection2 = 3;
+
+        //Act
+        double actualResult = App.division(selection1, selection2);
+
+        //Assert
+        Assert.assertEquals(expectedResult, actualResult, 0);
+    }
+
+    //Test the division method in main App for divide by zero on selection2
+    @Test
+    public void divisionbyZeroTest2()  {
+        //Arrange
+        double selection1 = 3;
+        double selection2 = 0;
+
+        //Act
+        double actualResult = App.division(selection1, selection2);
+
+        //Assert
+        Assert.assertTrue(Double.isInfinite(actualResult));
+    }
+
+    //Test the division method in main App for divide by zero on both selection1 and selection2
+    @Test
+    public void divisionbyZeroTest3() {
+        //Arrange
+        double selection1 = 0;
+        double selection2 = 0;
+
+        //Act
+        double actualResult = App.division(selection1, selection2);
+
+        //Assert
+        Assert.assertTrue(Double.isNaN(actualResult));
+    }
 
     //Test the overloaded method for Array Addition
     @Test
@@ -92,7 +131,7 @@ public class AppTest
     public void subtractionArrayTest() {
         //Arrange
         double[] array = {54, 35, 45, 66};
-        double expectedResult = -92;
+        double expectedResult = -146;
 
         //Act
         double actualResult = App.subtraction(array);

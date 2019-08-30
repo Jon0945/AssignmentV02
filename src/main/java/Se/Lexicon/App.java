@@ -139,9 +139,9 @@ public class App {
 
     //Overloaded subtraction method set to accept array
     public static double subtraction(double[] array1) {
-        double diff = 0;
+        double diff = array1[0];
         for (double i : array1)
-            diff -= i;
+            diff -=i;
         return diff;
     }
 }
